@@ -5,10 +5,21 @@ import {
   TiHeartOutline,
   TiHeartFullOutline,
 } from "react-icons/ti";
+import { handleToggleTweet } from "../actions/tweets";
 
 const Tweet = (props) => {
-  const handleLike = (e, id) => {
+  const handleLike = (e) => {
     e.preventDefault();
+
+    const { dispatch, tweet, authedUser } = props;
+
+    dispatch(
+      handleToggleTweet({
+        id: tweet.id,
+        hasLiked: tweet.hasLiked,
+        authedUser,
+      })
+    );
   };
 
   const toParent = (e, id) => {
